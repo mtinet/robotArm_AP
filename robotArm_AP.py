@@ -38,8 +38,8 @@ html = f"""
       <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>robotArm_AP</title>
-        <center><H1>robotArm_AP</h1></center>
+        <title>IoT robotArm</title>
+        <center><H1>IoT robotArm</h1></center>
         <style>
           /* 버튼 디자인 */
           .button {{

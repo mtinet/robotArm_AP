@@ -105,8 +105,8 @@ html = f"""
             <table>
               <tr>
                 <td>
-                  <form action="./clampClose">
-                    <button class="button" type="submit">ClampClose</button>
+                  <form action="./close">
+                    <button class="button" type="submit">Close</button>
                   </form>
                 </td>
                 <td>
@@ -115,8 +115,8 @@ html = f"""
                   </form>
                 </td>
                 <td>
-                  <form action="./clampOpen">
-                    <button class="button" type="submit">clampOpen</button>
+                  <form action="./open">
+                    <button class="button" type="submit">Open</button>
                   </form>
                 </td>
               </tr>
@@ -163,15 +163,15 @@ while True:
         elif b'GET /forward' in request:
             # back 동작 수행
             print("Input Command: Forward")
-        elif b'GET /clampClose' in request:
+        elif b'GET /close' in request:
             # back 동작 수행
-            print("Input Command: ClampClose")
+            print("Input Command: Close")
         elif b'GET /stopR' in request:
             # back 동작 수행
             print("Input Command: StopR")
-        elif b'GET /clampOpen' in request:
+        elif b'GET /open' in request:
             # back 동작 수행
-            print("Input Command: ClampOpen")
+            print("Input Command: Open")
         elif b'GET /backward' in request:
             # back 동작 수행
             print("Input Command: Backward")

@@ -33,6 +33,7 @@ led.off()
 
 #Template HTML
 html = f"""
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -62,77 +63,81 @@ html = f"""
       .button:hover {{
         background-color: #3e8e41;
       }}
+      .container {{
+        display: inline-block;
+        text-align: center;
+        padding: 20px;
+        margin: 10px;
+        background-color: #f1f1f1;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        border-radius: 20px;
+      }}
     </style>
   </head>
   <body>
     <center>
-      <table>
-        <tr>
-          <td>
-            <form action="./up">
-              <button class="button" type="submit">Up</button>
-            </form>
-            <br>
-            <table>
-              <tr>
-                <td>
-                  <form action="./ccw">
-                    <button class="button" type="submit">CCW</button>
-                  </form>
-                </td>
-                <td>
-                  <form action="./stopL">
-                    <button class="button" type="submit">StopL</button>
-                  </form>
-                </td>
-                <td>
-                  <form action="./cw">
-                    <button class="button" type="submit">CW</button>
-                  </form>
-                </td>
-              </tr>
-            </table>
-            <br>
-            <form action="./down">
-              <button class="button" type="submit">Down</button>
-            </form>
-          </td>
-          <td>
-            <form action="./forward">
-              <button class="button" type="submit">Forward</button>
-            </form>
-            <br>
-            <table>
-              <tr>
-                <td>
-                  <form action="./close">
-                    <button class="button" type="submit">Close</button>
-                  </form>
-                </td>
-                <td>
-                  <form action="./stopR">
-                    <button class="button" type="submit">StopR</button>
-                  </form>
-                </td>
-                <td>
-                  <form action="./open">
-                    <button class="button" type="submit">Open</button>
-                  </form>
-                </td>
-              </tr>
-            </table>
-            <br>
-            <form action="./backward">
-              <button class="button" type="submit">Backward</button>
-            </form>
-          </td>
-        </tr>
-      </table>
+      <div class="container">
+        <form action="./up">
+          <button class="button" type="submit">Up</button>
+        </form>
+        <br>
+        <table>
+          <tr>
+            <td>
+              <form action="./ccw">
+                <button class="button" type="submit">CCW</button>
+              </form>
+            </td>
+            <td>
+              <form action="./stopL">
+                <button class="button" type="submit">StopL</button>
+              </form>
+            </td>
+            <td>
+              <form action="./cw">
+                <button class="button" type="submit">CW</button>
+              </form>
+            </td>
+          </tr>
+        </table>
+        <br>
+        <form action="./down">
+          <button class="button" type="submit">Down</button>
+        </form>
+      </div>
+      <div class="container">
+        <form action="./forward">
+          <button class="button" type="submit">Forward</button>
+        </form>
+        <br>
+        <table>
+          <tr>
+            <td>
+              <form action="./close">
+                <button class="button" type="submit">Close</button>
+              </form>
+            </td>
+            <td>
+              <form action="./stopR">
+                <button class="button" type="submit">StopR</button>
+              </form>
+            </td>
+            <td>
+              <form action="./open">
+                <button class="button" type="submit">Open</button>
+              </form>
+            </td>
+          </tr>
+        </table>
+        <br>
+        <form action="./backward">
+          <button class="button" type="submit">Backward</button>
+        </form>
+      </div>
     </center>
   </body>
 </html>
 """
-
 
 
 # Listen for connections

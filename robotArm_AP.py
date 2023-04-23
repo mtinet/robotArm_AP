@@ -3,7 +3,7 @@ import network
 import machine
 
 # 접속을 위한 ssid, password 설정 
-ssid = 'rcCar_AP'
+ssid = 'robotArm_AP'
 password = '123456789'
 
 led = machine.Pin("LED",machine.Pin.OUT)
@@ -38,8 +38,8 @@ html = f"""
       <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>IoT Car</title>
-        <center><H1>IoT Car</h1></center>
+        <title>robotArm_AP</title>
+        <center><H1>robotArm_AP</h1></center>
         <style>
           /* 버튼 디자인 */
           .button {{

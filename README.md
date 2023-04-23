@@ -1,4 +1,4 @@
-# rcCar_AP
+# robotArm_AP
 
 ## 참고자료  
 

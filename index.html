@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+      width: 100px;
+      height: 60px;
+      border-radius: 10px;
+      transition: all 0.2s ease;
+    }
+    .button:hover {
+      background-color: #3e8e41;
+      filter: brightness(50%);
+    }
+    .controller {
+      display: inline-block;
+      vertical-align: top;
+      margin: 20px;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.1);
+      border-radius: 50px;
+    }
+    .button-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 360px;
+      height: 60px;
+      margin-bottom: 10px;
+      gap: 10px;
+    }
+  </style>
+  <script>
+    let xTimeLeft = 0;
+    let yTimeLeft = 0;
+    let xTimeRight = 0;
+    let yTimeRight = 0;
+    const maxTime = 5000; // 최대 시간 한계치 (5초)
+    const minAngle = 0;
+    const maxAngle = 180;
+    let interval;
+
+    function accumulateTime(axis, increment, side) {
+      clearInterval(interval);
+      interval = setInterval(() => {
+        if (side === 'left') {
+          if (axis === 'x') {
+            xTimeLeft += increment;
+            xTimeLeft = Math.min(Math.max(xTimeLeft, -maxTime), maxTime);
+            updateServoAngle('x', xTimeLeft, side);
+          } else if (axis === 'y') {
+            yTimeLeft += increment;
+            yTimeLeft = Math.min(Math.max(yTimeLeft, -maxTime), maxTime);
+            updateServoAngle('y', yTimeLeft, side);
+          }
+        } else if (side === 'right') {
+          if (axis === 'x') {
+            xTimeRight += increment;
+            xTimeRight = Math.min(Math.max(xTimeRight, -maxTime), maxTime);
+            updateServoAngle('x', xTimeRight, side);
+          } else if (axis === 'y') {
+            yTimeRight += increment;
+            yTimeRight = Math.min(Math.max(yTimeRight, -maxTime), maxTime);
+            updateServoAngle('y', yTimeRight, side);
+          }
+        }
+      }, 10); // 10ms마다 1씩 변화
+    }
+
+    function updateServoAngle(axis, time, side) {
+      let angle = map(time, -maxTime, maxTime, minAngle, maxAngle);
+      console.log(`Servo ${side.toUpperCase()} ${axis.toUpperCase()} angle: ${angle}`);
+    }
+
+    function map(value, in_min, in_max, out_min, out_max) {
+      return ((value - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min;
+    }
+
+    function mouseUp() {
+      clearInterval(interval);
+    }
+
+    function setAngleTo90(side) {
+      if (side === 'left') {
+        xTimeLeft = 0;
+        yTimeLeft = 0;
+        updateServoAngle('x', xTimeLeft, side);
+        updateServoAngle('y', yTimeLeft, side);
+      } else if (side === 'right') {
+        xTimeRight = 0;
+        yTimeRight = 0;
+        updateServoAngle('x', xTimeRight, side);
+        updateServoAngle('y', yTimeRight, side);
+      }
+    }
+  </script>
+  <title>IoT robotArm</title>
+  <center><H1>IoT robotArm</h1></center>
+</head>
+<body>
+  <div class="controller">
+    <div class="button-container">
+      <button class="button" onmousedown="accumulateTime('y', 50, 'left')" onmouseup="mouseUp()">Up</button>
+    </div>
+    <div class="button-container">
+      <button class="button" onmousedown="accumulateTime('x', 50, 'left')" onmouseup="mouseUp()">CCW</button>
+      <button class="button" onclick="setAngleTo90('left')">StopL</button>
+      <button class="button" onmousedown="accumulateTime('x', -50, 'left')" onmouseup="mouseUp()">CW</button>
+    </div>
+    <div class="button-container">
+      <button class="button" onmousedown="accumulateTime('y', -50, 'left')" onmouseup="mouseUp()">Down</button>
+    </div>
+  </div>
+  <div class="controller">
+    <div class="button-container">
+      <button class="button" onmousedown="accumulateTime('y', 50, 'right')" onmouseup="mouseUp()">Forward</button>
+    </div>
+    <div class="button-container">
+      <button class="button" onmousedown="accumulateTime('x', 50, 'right')" onmouseup="mouseUp()">Close</button>
+      <button class="button" onclick="setAngleTo90('right')">StopR</button>
+      <button class="button" onmousedown="accumulateTime('x', -50, 'right')" onmouseup="mouseUp()">Open</button>
+    </div>
+    <div class="button-container">
+      <button class="button" onmousedown="accumulateTime('y', -50, 'right')" onmouseup="mouseUp()">Backward</button>
+    </div>
+  </div>
+</body>
+</html>

@@ -24,17 +24,23 @@ def setAngle(servo, angle):
 def move_servo_slowly(servo, servo_num, target_angle, delay_time=0.01):
     current_angle = current_angles[servo_num]
     step = 1 if target_angle > current_angle else -1
-    for angle in range(current_angle, target_angle, step):
+    for angle in range(current_angle, target_angle + step, step):
         setAngle(servo, angle)
         current_angles[servo_num] = angle  # 현재 각도를 저장
         sleep(delay_time)
-    setAngle(servo, target_angle)  # 마지막으로 목표 각도로 정확하게 맞춤
     current_angles[servo_num] = target_angle  # 최종 각도를 저장
+
+# 특정한 동작을 미리 설정
+angles1 = [120, 150, 60, 90]
+angles2 = [85, 90, 90, 120]
 
 # 반복동작 
 while True:
-    move_servo_slowly(servos[servo_num], 0, 90)
-    move_servo_slowly(servos[servo_num], 1, 120)
-    move_servo_slowly(servos[servo_num], 2, 90)
-    move_servo_slowly(servos[servo_num], 3, 120)
+    for i in range(4):
+        move_servo_slowly(servos[i], i, angles1[i])
     sleep(1)
+
+    for i in range(4):
+        move_servo_slowly(servos[i], i, angles2[i])
+    sleep(1)
+

@@ -33,7 +33,6 @@ led.off()
 
 #Template HTML
 html = f"""
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -190,4 +189,3 @@ while True:
         cl.close()
         print('connection closed')
         s.close()
-
